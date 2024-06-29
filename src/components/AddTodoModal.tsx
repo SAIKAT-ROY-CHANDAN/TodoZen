@@ -20,7 +20,6 @@ const AddTodoModal = () => {
     const [description, setDescription] = useState('');
     const dispatch = useAppDispatch()
 
-
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
         const taskDetails = {
@@ -52,18 +51,18 @@ const AddTodoModal = () => {
                             <Label htmlFor="task" className="text-right">
                                 Task
                             </Label>
-                            <Input onBlur={(e) => setTask(e.target.value)} id="task" className="col-span-3" />
+                            <Input onChange={(e) => setTask(e.target.value)} id="task" className="col-span-3" />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="description" className="text-right">
                                 Description
                             </Label>
-                            <Input onBlur={(e) => setDescription(e.target.value)} id="description" className="col-span-3" />
+                            <Input onChange={(e) => setDescription(e.target.value)} id="description" className="col-span-3" />
                         </div>
                     </div>
 
                     <DialogFooter>
-                        <DialogClose>
+                        <DialogClose asChild>
                             <Button type="submit">Create Task</Button>
                         </DialogClose>
                     </DialogFooter>
