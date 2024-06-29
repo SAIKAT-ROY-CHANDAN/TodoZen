@@ -2,6 +2,7 @@ import { FormEvent, useState } from "react"
 import { Button } from "./ui/button"
 import {
     Dialog,
+    DialogClose,
     DialogContent,
     DialogDescription,
     DialogFooter,
@@ -18,7 +19,7 @@ const AddTodoModal = () => {
     const [task, setTask] = useState('');
     const [description, setDescription] = useState('');
     const dispatch = useAppDispatch()
-    
+
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault()
@@ -60,8 +61,11 @@ const AddTodoModal = () => {
                             <Input onBlur={(e) => setDescription(e.target.value)} id="description" className="col-span-3" />
                         </div>
                     </div>
+
                     <DialogFooter>
-                        <Button type="submit">Create Task</Button>
+                        <DialogClose>
+                            <Button type="submit">Create Task</Button>
+                        </DialogClose>
                     </DialogFooter>
                 </form>
             </DialogContent>

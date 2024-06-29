@@ -17,8 +17,8 @@ const TodoContainer = () => {
       <div className="bg-primary w-full h-full rounded-lg space-y-3 p-[2px]">
         <div className="bg-gray-50 rounded-lg">
           {
-            todos.map(({title, description, id}) => (
-              <TodoCard key={id} id={id} title={title} description={description} />
+            todos.map(({ title, description, id, isCompleted }) => (
+              <TodoCard key={id} id={id} title={title} isCompleted={isCompleted} description={description} />
             ))
           }
         </div>

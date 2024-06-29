@@ -2,27 +2,32 @@ import { RiEditCircleLine } from "react-icons/ri";
 import { Button } from "./ui/button"
 import { FiMinus } from "react-icons/fi";
 import { useAppDispatch } from "../redux/hooks";
-import { removeTodo } from "../redux/features/todoSlice";
+import { removeTodo, toggleComplete } from "../redux/features/todoSlice";
 
 interface IProps {
   id: string
   title: string
   description: string
+  isCompleted?: boolean
 }
 
-const TodoCard = ({ title, description, id }: IProps) => {
+const TodoCard = ({ title, isCompleted, description, id }: IProps) => {
   const dispatch = useAppDispatch()
+
+  const toggleState = () => {
+    dispatch(toggleComplete(id))
+  }
 
   return (
     <div>
       <div className="rounded-md bg-gray-200/20 flex justify-between items-center border p-2">
-        <input type="checkbox" />
+        <input onChange={toggleState} type="checkbox" name="complete" id="complete" />
         <p className="font-semibold">{title}</p>
-        <p>Time</p>
+        <p className={isCompleted ? 'text-green-500' : 'text-red-500'}>{isCompleted ? 'Done' : 'Pending'}</p>
         <p>{description}</p>
         <div className="space-x-4">
           <Button
-           onClick={() => dispatch(removeTodo(id))} variant='destructive'>
+            onClick={() => dispatch(removeTodo(id))} variant='destructive'>
             <FiMinus size={20} />
           </Button>
           <Button>
